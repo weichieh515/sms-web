@@ -2,41 +2,59 @@
 
   <nb-layout-header fixed>
     簡訊小尖兵
-    <nb-search type="modal-move"></nb-search>
-    <input nbInput placeholder="傳送日期" [nbDatepicker]="rangepicker" shape="round">
-    <nb-rangepicker #rangepicker [max]="today" ></nb-rangepicker>
+    <nb-actions >
+        <nb-action icon="funnel-outline" (click)="toggleFilter()"></nb-action>
+        <nb-action class="control-item" icon="email-outline" (click)="openWindow(contentTemplate)"></nb-action>
+        <!-- <nb-action icon="nb-power-circled"></nb-action> -->
+        <!-- <nb-action icon="nb-person"></nb-action> -->
+      </nb-actions>
   </nb-layout-header>
-  <nb-layout-header subheader>
-    <nb-actions>
-      <nb-action>
-        <nb-checkbox status="info">CHT</nb-checkbox>
-        <nb-checkbox status="danger">FET</nb-checkbox>
-      </nb-action>
-      <nb-action>
-        <nb-checkbox status="primary">指令</nb-checkbox>
-        <nb-checkbox status="success">通知</nb-checkbox>
-        <nb-checkbox status="warning">其他</nb-checkbox>
-      </nb-action>
-      <nb-action>
-        <nb-checkbox status="info">處理中</nb-checkbox>
-        <nb-checkbox status="primary">傳送中</nb-checkbox>
-        <nb-checkbox status="warning">拒絕</nb-checkbox>
-        <nb-checkbox status="success">成功</nb-checkbox>
-        <nb-checkbox status="danger">失敗</nb-checkbox>
-      </nb-action>
-      <!-- <nb-action icon="globe-outline"></nb-action> -->
-      <!-- <nb-action icon="pie-chart-outline"></nb-action> -->
-    </nb-actions>
-  </nb-layout-header>
+
+  <nb-sidebar left tag="filter" state="collapsed">
+      <nb-search type="rotate-layout"></nb-search>
+      <input nbInput placeholder="傳送日期" [nbDatepicker]="rangepicker" shape="round" class="my-5">
+      <nb-rangepicker #rangepicker [max]="today"></nb-rangepicker>
+      <span class="subheader">電信</span>
+      <hr>
+      <nb-checkbox status="info">CHT</nb-checkbox>
+      <nb-checkbox status="danger">FET</nb-checkbox>
+      <br>
+      <span class="subheader">發送用途</span>
+      <hr>
+      <nb-checkbox status="primary">指令</nb-checkbox>
+      <nb-checkbox status="success">通知</nb-checkbox>
+      <nb-checkbox status="warning">其他</nb-checkbox>
+      <br>
+      <span class="subheader">狀態</span>
+      <hr>
+      <nb-checkbox status="info">處理中</nb-checkbox>
+      <nb-checkbox status="primary">傳送中</nb-checkbox>
+      <nb-checkbox status="success">已成功</nb-checkbox>
+      <nb-checkbox status="danger">已失敗</nb-checkbox>
+      <nb-checkbox status="warning">遭電信拒絕</nb-checkbox>
+     
+    </nb-sidebar>
+
 
   <nb-layout-column>
-
+    
+        <nb-list>
+          <nb-list-item >
+            <!-- <nb-news-post [post]="newsPost"></nb-news-post> -->
+          </nb-list-item>
+        
+        </nb-list>
+    
     Hello World!
 
     <router-outlet></router-outlet>
 
   </nb-layout-column>
 
-  <nb-layout-footer>Contact us</nb-layout-footer>
+  <!-- <nb-layout-footer>Contact us</nb-layout-footer> -->
 
 </nb-layout>
+
+<ng-template #contentTemplate let-data>
+    <p>Here is the text provided via config: "{{ data.text }}"</p>
+  </ng-template>

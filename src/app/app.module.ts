@@ -6,7 +6,20 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // nb
-import { NbThemeModule, NbLayoutModule, NbCheckboxModule, NbActionsModule, NbDatepickerModule, NbInputModule, NbSearchModule } from '@nebular/theme';
+import {
+  NbThemeModule,
+  NbLayoutModule,
+  NbCheckboxModule,
+  NbActionsModule,
+  NbDatepickerModule,
+  NbInputModule,
+  NbSearchModule,
+  NbMenuModule,
+  NbContextMenuModule,
+  NbSidebarModule,
+  NbWindowModule,
+  NbListModule
+} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 
@@ -25,7 +38,12 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbActionsModule,
     NbDatepickerModule.forRoot(),
     NbInputModule,
-    NbSearchModule
+    NbSearchModule,
+    NbMenuModule.forRoot(),
+    NbContextMenuModule,
+    NbSidebarModule.forRoot(),
+    NbWindowModule.forRoot(),
+    NbListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
