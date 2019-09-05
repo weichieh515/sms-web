@@ -3,6 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// nb
+import { NbThemeModule, NbLayoutModule, NbCheckboxModule, NbActionsModule, NbDatepickerModule, NbInputModule, NbSearchModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+
 
 @NgModule({
   declarations: [
@@ -10,7 +16,16 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    NbThemeModule.forRoot(),
+    NbLayoutModule,
+    NbEvaIconsModule,
+    NbCheckboxModule,
+    NbActionsModule,
+    NbDatepickerModule.forRoot(),
+    NbInputModule,
+    NbSearchModule
   ],
   providers: [],
   bootstrap: [AppComponent]
