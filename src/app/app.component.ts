@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NbSidebarService, NbWindowService, NbThemeService } from '@nebular/theme';
 
 import { HistoryService } from './history.service';
+import { STATUS } from './status';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,20 @@ export class AppComponent implements OnInit {
   today = new Date();
   historyMessage = [];
 
+  multi = [
+    {
+      "series": [
+        {
+          "name": "2010",
+          "value": 7300000
+        },
+        {
+          "name": "2011",
+          "value": 8940000
+        }
+      ]
+    }
+  ]
   constructor(
     private sidebarService: NbSidebarService,
     private windowService: NbWindowService,
@@ -35,6 +50,8 @@ export class AppComponent implements OnInit {
   toggleFilter() {
     this.sidebarService.toggle(false, 'filter');
   }
+
+
 
   openWindow(contentTemplate) {
     this.windowService.open(

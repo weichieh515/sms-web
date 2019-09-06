@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { STATUS } from './status';
+import { STATUS } from '../status';
 
 @Component({
   selector: 'app-status',

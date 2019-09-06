@@ -21,12 +21,12 @@ nb-card {
 }
 
 .message {
-  border-left-style: solid;
+  border-right-style: solid;
   &.cht {
-    border-left-color: nb-theme(color-primary-500);
+    border-right-color: nb-theme(color-primary-500);
   }
   &.fet {
-    border-left-color: nb-theme(color-danger-500);
+    border-right-color: nb-theme(color-danger-500);
 
   }
 }

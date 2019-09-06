@@ -51,7 +51,7 @@
         <nb-accordion-item *ngFor="let msg of historyMessage" class="row mx-0 message"
           [ngClass]="{'cht': msg.option.telecom === 'CHT', 'fet': msg.option.telecom === 'FET'}">
           <nb-accordion-item-header>
-            <nb-user [name]="msg.user" onlyPicture="true" class="col-1"></nb-user>
+            <app-status-chart [msgDestination]="msg.destination" class="col-1"></app-status-chart>
             <p class="col-5 my-auto text-break">
               {{ msg.content }}
             </p>
@@ -60,6 +60,8 @@
               <br>
               {{ msg.dateTime | amTimeAgo }}
             </p>
+            <nb-user [name]="msg.user" onlyPicture="true" class="col-1"></nb-user>
+
           </nb-accordion-item-header>
           <nb-accordion-item-body>
             <nb-list>
