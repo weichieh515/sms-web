@@ -39,16 +39,17 @@
       <nb-checkbox status="primary">傳送中</nb-checkbox>
       <nb-checkbox status="success">已成功</nb-checkbox>
       <nb-checkbox status="danger">已失敗</nb-checkbox>
-      <nb-checkbox status="warning">遭電信拒絕</nb-checkbox>
+      <nb-checkbox status="warning">電信拒絕</nb-checkbox>
     </div>
 
   </nb-sidebar>
 
 
   <nb-layout-column>
-    <nb-card >
+    <nb-card>
       <nb-accordion multi nbInfiniteList [threshold]="500" pageSize="5">
-        <nb-accordion-item *ngFor="let msg of historyMessage" class="row mx-0 message" [ngClass]="{'cht': msg.option.telecom === 'CHT', 'fet': msg.option.telecom === 'FET'}">
+        <nb-accordion-item *ngFor="let msg of historyMessage" class="row mx-0 message"
+          [ngClass]="{'cht': msg.option.telecom === 'CHT', 'fet': msg.option.telecom === 'FET'}">
           <nb-accordion-item-header>
             <nb-user [name]="msg.user" onlyPicture="true" class="col-1"></nb-user>
             <p class="col-5 my-auto text-break">
@@ -63,7 +64,7 @@
           <nb-accordion-item-body>
             <nb-list>
               <nb-list-item *ngFor="let destination of msg.destination" class="row mx-0 p">
-                <button class="col-1 my-auto" nbButton shape="round" size="small" outline status="success">已成功</button>
+                <app-status class="col-1 my-auto" [status]="destination.status"></app-status>
                 <div class="col-3 my-auto text-break text-center"> {{ destination.number }}</div>
                 <nb-actions class="col-2">
                   <nb-action icon="refresh-outline" (click)="toggleFilter()"></nb-action>
@@ -75,12 +76,12 @@
                   {{ destination.successDateTime || destination.updateDateTime | amDifference: msg.dateTime :'second' | amDuration: 'seconds' }}
                 </div>
                 <div class="col-3 my-auto text-break">
-                  <span class="text-muted"> 訊息編號</span> {{ destination.messageId || '無'}}
+                  <span class="text-muted" *ngIf=" destination.messageId "> 訊息編號</span> {{ destination.messageId }}
                   <br>
                   <span class="text-muted">電信回應</span> {{ destination.responseText }}</div>
-
               </nb-list-item>
             </nb-list>
+            <!-- {{ msg.option.telecom }} -->
           </nb-accordion-item-body>
         </nb-accordion-item>
       </nb-accordion>

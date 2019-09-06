@@ -30,11 +30,13 @@ import {
   NbButtonModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { StatusComponent } from './status/status.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StatusComponent
   ],
   imports: [
     BrowserModule,
