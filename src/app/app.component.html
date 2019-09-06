@@ -1,22 +1,30 @@
 <nb-layout>
 
   <nb-layout-header fixed>
-    簡訊小尖兵
-    <nb-actions >
+    <div class="d-flex justify-content-between w-100">
+      <nb-actions>
         <nb-action icon="funnel-outline" (click)="toggleFilter()"></nb-action>
-        <nb-action class="control-item" icon="email-outline" (click)="openWindow(contentTemplate)"></nb-action>
-        <!-- <nb-action icon="nb-power-circled"></nb-action> -->
-        <!-- <nb-action icon="nb-person"></nb-action> -->
       </nb-actions>
+      <h3>
+        簡訊小尖兵
+      </h3>
+      <nb-actions>
+        <nb-action class="control-item" icon="email-outline" (click)="openWindow(contentTemplate)"></nb-action>
+        <nb-action class="control-item" icon="moon-outline" (click)="toggleDarkMode()"></nb-action>
+      </nb-actions>
+    </div>
+
   </nb-layout-header>
 
   <nb-sidebar left tag="filter" state="collapsed">
-      <nb-search type="rotate-layout"></nb-search>
-      <input nbInput placeholder="傳送日期" [nbDatepicker]="rangepicker" shape="round" class="my-5">
-      <nb-rangepicker #rangepicker [max]="today"></nb-rangepicker>
+    <nb-search type="rotate-layout"></nb-search>
+    <input nbInput placeholder="傳送日期" [nbDatepicker]="rangepicker" shape="round" class="my-5">
+    <nb-rangepicker #rangepicker [max]="today"></nb-rangepicker>
+    <div class="my-auto">
+
       <span class="subheader">電信</span>
       <hr>
-      <nb-checkbox status="info">CHT</nb-checkbox>
+      <nb-checkbox status="primary">CHT</nb-checkbox>
       <nb-checkbox status="danger">FET</nb-checkbox>
       <br>
       <span class="subheader">發送用途</span>
@@ -32,29 +40,58 @@
       <nb-checkbox status="success">已成功</nb-checkbox>
       <nb-checkbox status="danger">已失敗</nb-checkbox>
       <nb-checkbox status="warning">遭電信拒絕</nb-checkbox>
-     
-    </nb-sidebar>
+    </div>
+
+  </nb-sidebar>
 
 
   <nb-layout-column>
-    
-        <nb-list>
-          <nb-list-item >
-            <!-- <nb-news-post [post]="newsPost"></nb-news-post> -->
-          </nb-list-item>
-        
-        </nb-list>
-    
-    Hello World!
+    <nb-card >
+      <nb-accordion multi nbInfiniteList [threshold]="500" pageSize="5">
+        <nb-accordion-item *ngFor="let msg of historyMessage" class="row mx-0 message" [ngClass]="{'cht': msg.option.telecom === 'CHT', 'fet': msg.option.telecom === 'FET'}">
+          <nb-accordion-item-header>
+            <nb-user [name]="msg.user" onlyPicture="true" class="col-1"></nb-user>
+            <p class="col-5 my-auto text-break">
+              {{ msg.content }}
+            </p>
+            <p class="col-3 my-auto">
+              {{ msg.dateTime | amLocal | amDateFormat: 'MM/DD, HH:mm:ss'}}
+              <br>
+              {{ msg.dateTime | amTimeAgo }}
+            </p>
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+            <nb-list>
+              <nb-list-item *ngFor="let destination of msg.destination" class="row mx-0 p">
+                <button class="col-1 my-auto" nbButton shape="round" size="small" outline status="success">已成功</button>
+                <div class="col-3 my-auto text-break text-center"> {{ destination.number }}</div>
+                <nb-actions class="col-2">
+                  <nb-action icon="refresh-outline" (click)="toggleFilter()"></nb-action>
+                </nb-actions>
+                <div class="col-3 my-auto text-break">
+                  {{ destination.successDateTime || destination.updateDateTime | amLocal | amDateFormat: 'MM/DD, HH:mm:ss'}}
+                  <br>
+                  <span class="text-muted">經歷</span>
+                  {{ destination.successDateTime || destination.updateDateTime | amDifference: msg.dateTime :'second' | amDuration: 'seconds' }}
+                </div>
+                <div class="col-3 my-auto text-break">
+                  <span class="text-muted"> 訊息編號</span> {{ destination.messageId || '無'}}
+                  <br>
+                  <span class="text-muted">電信回應</span> {{ destination.responseText }}</div>
+
+              </nb-list-item>
+            </nb-list>
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+      </nb-accordion>
+    </nb-card>
 
     <router-outlet></router-outlet>
 
   </nb-layout-column>
 
-  <!-- <nb-layout-footer>Contact us</nb-layout-footer> -->
-
 </nb-layout>
 
 <ng-template #contentTemplate let-data>
-    <p>Here is the text provided via config: "{{ data.text }}"</p>
-  </ng-template>
+  <p>Here is the text provided via config: "{{ data.text }}"</p>
+</ng-template>

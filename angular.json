@@ -24,8 +24,9 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@nebular/theme/styles/prebuilt/default.css",
-              "src/styles.css"
+              "./node_modules/@nebular/theme/styles/prebuilt/dark.scss",
+              "./node_modules/@nebular/theme/styles/prebuilt/default.scss",
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -85,7 +86,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -118,5 +119,10 @@
       }
     }
   },
-  "defaultProject": "sms-web"
+  "defaultProject": "sms-web",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

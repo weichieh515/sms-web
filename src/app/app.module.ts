@@ -1,9 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MomentModule } from 'ngx-moment';
+
+import 'moment/locale/zh-tw';
 
 // nb
 import {
@@ -18,7 +23,11 @@ import {
   NbContextMenuModule,
   NbSidebarModule,
   NbWindowModule,
-  NbListModule
+  NbListModule,
+  NbCardModule,
+  NbUserModule,
+  NbAccordionModule,
+  NbButtonModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -30,8 +39,11 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
-    NbThemeModule.forRoot(),
+    MomentModule,
+    // nb
+    NbThemeModule.forRoot({ name: 'dark' }),
     NbLayoutModule,
     NbEvaIconsModule,
     NbCheckboxModule,
@@ -43,7 +55,11 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbContextMenuModule,
     NbSidebarModule.forRoot(),
     NbWindowModule.forRoot(),
-    NbListModule
+    NbListModule,
+    NbCardModule,
+    NbUserModule,
+    NbAccordionModule,
+    NbButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
