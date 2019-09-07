@@ -20,17 +20,6 @@ nb-card {
   }
 }
 
-.message {
-  border-right-style: solid;
-  &.cht {
-    border-right-color: nb-theme(color-primary-500);
-  }
-  &.fet {
-    border-right-color: nb-theme(color-danger-500);
-
-  }
-}
-
 nb-list-item:first-child {
   border-top-width:0
 }

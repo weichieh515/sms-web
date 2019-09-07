@@ -46,35 +46,35 @@
 
 
   <nb-layout-column>
-    <nb-card>
-      <nb-accordion multi nbInfiniteList [threshold]="500" pageSize="5">
-        <nb-accordion-item *ngFor="let msg of historyMessage" class="row mx-0 message"
-          [ngClass]="{'cht': msg.option.telecom === 'CHT', 'fet': msg.option.telecom === 'FET'}">
+    <nb-card class="row mx-0">
+      <nb-accordion multi nbInfiniteList [threshold]="500" pageSize="5" class="col-12 col-lg-8">
+        <nb-accordion-item *ngFor="let msg of historyMessage" class="row mx-0 ">
           <nb-accordion-item-header>
-            <app-status-chart [msgDestination]="msg.destination" class="col-1"></app-status-chart>
-            <p class="col-5 my-auto text-break">
+            <div class="col-2 col-sm-1 ">
+                <app-status-chart [msgDestination]="msg.destination"></app-status-chart>
+            </div>
+            <p class="col-7 my-auto text-break">
               {{ msg.content }}
             </p>
-            <p class="col-3 my-auto">
+            <p class="col-2 my-auto">
               {{ msg.dateTime | amLocal | amDateFormat: 'MM/DD, HH:mm:ss'}}
               <br>
-              {{ msg.dateTime | amTimeAgo }}
+              <span class="text-muted">{{ msg.dateTime | amTimeAgo }}</span>
             </p>
-            <nb-user [name]="msg.user" onlyPicture="true" class="col-1"></nb-user>
+            <nb-badge *ngIf="msg.destination.length > 1" [text]="msg.destination.length" status="danger"></nb-badge>
 
           </nb-accordion-item-header>
           <nb-accordion-item-body>
+            <div class="row">
+              <nb-user [name]="msg.user" onlyPicture="false" class="col-2"></nb-user>
+            </div>
             <nb-list>
               <nb-list-item *ngFor="let destination of msg.destination" class="row mx-0 p">
                 <app-status class="col-1 my-auto" [status]="destination.status"></app-status>
                 <div class="col-3 my-auto text-break text-center"> {{ destination.number }}</div>
-                <nb-actions class="col-2">
-                  <nb-action icon="refresh-outline" (click)="toggleFilter()"></nb-action>
-                </nb-actions>
                 <div class="col-3 my-auto text-break">
                   {{ destination.successDateTime || destination.updateDateTime | amLocal | amDateFormat: 'MM/DD, HH:mm:ss'}}
                   <br>
-                  <span class="text-muted">經歷</span>
                   {{ destination.successDateTime || destination.updateDateTime | amDifference: msg.dateTime :'second' | amDuration: 'seconds' }}
                 </div>
                 <div class="col-3 my-auto text-break">

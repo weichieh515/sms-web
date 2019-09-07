@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { STATUS } from '../status';
 
 @Component({
@@ -6,7 +6,7 @@ import { STATUS } from '../status';
   templateUrl: './status-chart.component.html',
   styleUrls: ['./status-chart.component.scss'],
 })
-export class StatusChartComponent implements OnChanges {
+export class StatusChartComponent implements OnInit, OnChanges {
 
   @Input() msgDestination: any[] = [];
   results: any[] = [];

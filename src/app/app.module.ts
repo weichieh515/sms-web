@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MomentModule } from 'ngx-moment';
-import { BarChartModule,PieChartModule } from '@swimlane/ngx-charts';
+import { BarChartModule, PieChartModule } from '@swimlane/ngx-charts';
 
 import 'moment/locale/zh-tw';
 
@@ -28,7 +28,8 @@ import {
   NbCardModule,
   NbUserModule,
   NbAccordionModule,
-  NbButtonModule
+  NbButtonModule,
+  NbBadgeModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { StatusComponent } from './status/status.component';
@@ -65,6 +66,7 @@ import { StatusChartComponent } from './status-chart/status-chart.component';
     NbUserModule,
     NbAccordionModule,
     NbButtonModule,
+    NbBadgeModule,
     // chart
     BarChartModule,
     PieChartModule
