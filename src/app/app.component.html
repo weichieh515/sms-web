@@ -46,13 +46,19 @@
 
 
   <nb-layout-column>
+    <div class="row timeline">
+      <ngx-charts-bar-vertical [results]="data">
+      </ngx-charts-bar-vertical>
+    </div>
+
+
     <nb-card>
       <nb-accordion multi nbInfiniteList [threshold]="500" pageSize="5">
         <nb-accordion-item *ngFor="let msg of historyMessage" class="row mx-0 ">
           <nb-accordion-item-header class="px-0">
             <!-- chart  -->
             <div class="col-2 col-md-1  px-0">
-              <app-status-chart [msgDestination]="msg.destination"></app-status-chart>
+              <app-status-chart [msgDestination]="msg.destination" [size]="80"></app-status-chart>
             </div>
             <!-- content  -->
             <p class="col-7 col-md-6 my-auto text-break">
@@ -91,10 +97,12 @@
                   <span class="text-muted" *ngIf=" destination.messageId "> 訊息編號</span> {{ destination.messageId }}
                   <br>
                   <span class="text-muted">電信回應</span> {{ destination.responseText }}</div>
-                  <!-- dateTime  -->
+                <!-- dateTime  -->
                 <div class="col-3 col-lg-2 my-auto ml-auto pr-0" *ngIf="destination.updateDateTime">
-                  <div class="d-none d-sm-block">  {{ destination.updateDateTime  | amLocal | amDateFormat: 'MM/DD, HH:mm:ss'}} </div>
-                  <span class="text-muted ">{{destination.updateDateTime | amDifference: msg.dateTime :'second' | amDuration: 'seconds' }}</span>
+                  <div class="d-none d-sm-block">
+                    {{ destination.updateDateTime  | amLocal | amDateFormat: 'MM/DD, HH:mm:ss'}} </div>
+                  <span
+                    class="text-muted ">{{destination.updateDateTime | amDifference: msg.dateTime :'second' | amDuration: 'seconds' }}</span>
                 </div>
               </nb-list-item>
             </nb-list>

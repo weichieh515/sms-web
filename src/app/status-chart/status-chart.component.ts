@@ -9,6 +9,7 @@ import { STATUS } from '../status';
 export class StatusChartComponent implements OnInit, OnChanges {
 
   @Input() msgDestination: any[] = [];
+  @Input() size: number;
   results: any[] = [];
   customColors: any[] = [];
   constructor() { }
