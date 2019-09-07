@@ -29,7 +29,8 @@ import {
   NbUserModule,
   NbAccordionModule,
   NbButtonModule,
-  NbBadgeModule
+  NbBadgeModule,
+  NbTooltipModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { StatusComponent } from './status/status.component';
@@ -67,6 +68,7 @@ import { StatusChartComponent } from './status-chart/status-chart.component';
     NbAccordionModule,
     NbButtonModule,
     NbBadgeModule,
+    NbTooltipModule,
     // chart
     BarChartModule,
     PieChartModule

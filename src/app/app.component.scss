@@ -1,27 +1,9 @@
-@import '~@nebular/theme/styles/theming';
-@import '~@nebular/theme/styles/themes';
-
-.subheader {
-  display: block;
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1.5rem;
-  margin-bottom: .875rem;
-  margin-top: .875rem;
-}
-
 nb-accordion-item-header {
   height: 80px
 }
 
-nb-card {
-  &.own-scroll {
-    height: calc(100vh - 20vh);
-  }
-}
-
 nb-list-item:first-child {
-  border-top-width:0
+  border-top-width: 0
 }
 
 nb-list-item {
