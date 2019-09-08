@@ -30,18 +30,23 @@ import {
   NbAccordionModule,
   NbButtonModule,
   NbBadgeModule,
-  NbTooltipModule
+  NbTooltipModule,
+  NbTabsetModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { StatusComponent } from './status/status.component';
 import { StatusChartComponent } from './status-chart/status-chart.component';
+import { MessageListComponent } from './message-list/message-list.component';
+import { FilterComponent } from './filter/filter.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     StatusComponent,
-    StatusChartComponent
+    StatusChartComponent,
+    MessageListComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +74,7 @@ import { StatusChartComponent } from './status-chart/status-chart.component';
     NbButtonModule,
     NbBadgeModule,
     NbTooltipModule,
+    NbTabsetModule,
     // chart
     BarChartModule,
     PieChartModule

@@ -1,0 +1,56 @@
+<nb-accordion multi>
+    <nb-accordion-item *ngFor="let msg of messages" class="row mx-0 ">
+      <nb-accordion-item-header class="px-0">
+        <!-- chart  -->
+        <div class="col-2 col-md-1  px-0">
+          <app-status-chart [msgDestination]="msg.destination" [size]="80"></app-status-chart>
+        </div>
+        <!-- content  -->
+        <p class="col-7 col-md-6 my-auto text-break">
+          {{ msg.content }}
+        </p>
+        <!-- user  -->
+        <div class="col-1 d-none d-md-block ml-auto">
+          <nb-user [name]="msg.user" onlyPicture="true" [nbTooltip]="'發送者:'+ msg.user" nbTooltipPlacement="right">
+          </nb-user>
+        </div>
+        <!-- telecom  -->
+        <div class="col-1 d-none d-md-block ml-auto">
+          <span class="badge mx-auto"
+            [ngClass]="{'badge-danger':  msg.option.telecom === 'FET', 'badge-primary':  msg.option.telecom === 'CHT'}">
+            {{ msg.option.telecom }}
+          </span>
+        </div>
+        <!-- dateTime -->
+        <div class="col-3 col-lg-2 my-auto ml-auto pl-0">
+          <div class="d-none d-sm-block"> {{ msg.dateTime | amLocal | amDateFormat: 'MM/DD, HH:mm:ss'}} </div>
+          <div class="d-block d-sm-none text-break"> {{ msg.dateTime | amLocal | amDateFormat: 'M/D, H:m'}} </div>
+          <span class="text-muted d-none d-sm-block">{{ msg.dateTime | amTimeAgo }}</span>
+        </div>
+        <nb-badge *ngIf="msg.destination.length > 1" [text]="msg.destination.length" status="danger"></nb-badge>
+
+      </nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <nb-list>
+          <nb-list-item *ngFor="let destination of msg.destination" class="row mx-0 px-0">
+            <!-- status  -->
+            <app-status class="col-3 col-md-1 my-auto pl-0 ml-auto" [status]="destination.status"></app-status>
+            <!-- number  -->
+            <div class="col-6 col-md-3 my-auto text-break text-center "> {{ destination.number }}</div>
+            <!-- text  -->
+            <div class="col-md-4 col-lg-5 my-auto text-break d-none d-md-block">
+              <span class="text-muted" *ngIf=" destination.messageId "> 訊息編號</span> {{ destination.messageId }}
+              <br>
+              <span class="text-muted">電信回應</span> {{ destination.responseText }}</div>
+            <!-- dateTime  -->
+            <div class="col-3 col-lg-2 my-auto ml-auto pr-0" *ngIf="destination.updateDateTime">
+              <div class="d-none d-sm-block">
+                {{ destination.updateDateTime  | amLocal | amDateFormat: 'MM/DD, HH:mm:ss'}} </div>
+              <span
+                class="text-muted ">{{destination.updateDateTime | amDifference: msg.dateTime :'second' | amDuration: 'seconds' }}</span>
+            </div>
+          </nb-list-item>
+        </nb-list>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+  </nb-accordion>

@@ -14,4 +14,8 @@ export class HistoryService {
   getAll(): Observable<any[]> {
     return this.http.get<any[]>(apiUrl + 'history');
   }
+
+  groupByHour(data) {
+    
+  }
 }
