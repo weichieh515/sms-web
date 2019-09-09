@@ -1,4 +1,4 @@
-<nb-layout>
+<nb-layout windowMode>
 
   <nb-layout-header fixed>
     <div class="d-flex justify-content-between w-100">
@@ -16,23 +16,24 @@
 
   </nb-layout-header>
 
-  <nb-sidebar left tag="filter" state="collapsed" responsive="true" state="expanded" compactedBreakpoints="" collapsedBreakpoints="['xs', 'is', 'sm', 'md']">
+  <nb-sidebar left tag="filter" state="collapsed" responsive="true" state="expanded" compactedBreakpoints=""
+    collapsedBreakpoints="['xs', 'is', 'sm', 'md']">
     <app-filter></app-filter>
   </nb-sidebar>
 
 
-  <nb-layout-column>
-    <nb-tabset fullWidth class="h-100">
-      <nb-tab tabIcon="paper-plane-outline" class="px-0" >
-        <nb-card class="h-100" >
-          <app-message-list [messages]="historyMessage"></app-message-list>
-        </nb-card>
-      </nb-tab>
-      <nb-tab tabIcon="inbox-outline" class="px-0">
-        <p>List of <strong>orders</strong>.</p>
-      </nb-tab>
-    </nb-tabset>
-    <!-- <router-outlet></router-outlet> -->
+  <nb-layout-column class="h-100">
+
+    <nb-card size="large">
+      <nb-tabset fullWidth class="h-100">
+        <nb-tab tabIcon="inbox-outline" class="h-100">
+            <app-reply-list [replies]="replyMessage" class="h-100"></app-reply-list>
+        </nb-tab>
+        <nb-tab tabIcon="paper-plane-outline" class="h-100">
+          <app-message-list [messages]="historyMessage" class="h-100"></app-message-list>
+        </nb-tab>
+      </nb-tabset>
+    </nb-card>
 
   </nb-layout-column>
 

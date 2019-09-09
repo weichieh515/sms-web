@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NbSidebarService, NbWindowService, NbThemeService } from '@nebular/theme';
 
 import { HistoryService } from './history.service';
-import { STATUS } from './status';
+import { ReplyService } from './reply.service';
 
 @Component({
   selector: 'app-root',
@@ -13,17 +13,23 @@ export class AppComponent implements OnInit {
   title = 'sms-web';
   today = new Date();
   historyMessage = [];
+  replyMessage = [];
 
   constructor(
     private sidebarService: NbSidebarService,
     private windowService: NbWindowService,
+    private themeService: NbThemeService,
     private historyService: HistoryService,
-    private themeService: NbThemeService
+    private replyService: ReplyService,
   ) { }
 
   ngOnInit(): void {
     this.historyService.getAll().subscribe(
       data => this.historyMessage = data,
+      err => console.error(err)
+    );
+    this.replyService.getAll().subscribe(
+      data => this.replyMessage = data,
       err => console.error(err)
     );
   }

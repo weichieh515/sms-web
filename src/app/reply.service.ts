@@ -7,12 +7,11 @@ const apiUrl = 'http://localhost:80/web/';
 @Injectable({
   providedIn: 'root'
 })
-export class HistoryService {
+export class ReplyService {
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any[]> {
-    return this.http.get<any[]>(apiUrl + 'history');
+    return this.http.get<any[]>(apiUrl + 'reply');
   }
-
 }

@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MomentModule } from 'ngx-moment';
 import { BarChartModule, PieChartModule } from '@swimlane/ngx-charts';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import 'moment/locale/zh-tw';
 
@@ -38,6 +39,7 @@ import { StatusComponent } from './status/status.component';
 import { StatusChartComponent } from './status-chart/status-chart.component';
 import { MessageListComponent } from './message-list/message-list.component';
 import { FilterComponent } from './filter/filter.component';
+import { ReplyListComponent } from './reply-list/reply-list.component';
 
 
 @NgModule({
@@ -46,7 +48,8 @@ import { FilterComponent } from './filter/filter.component';
     StatusComponent,
     StatusChartComponent,
     MessageListComponent,
-    FilterComponent
+    FilterComponent,
+    ReplyListComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { FilterComponent } from './filter/filter.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MomentModule,
+    InfiniteScrollModule,
     // nb
     NbThemeModule.forRoot({ name: 'dark' }),
     NbLayoutModule,
