@@ -22,9 +22,9 @@
   </nb-sidebar>
 
 
-  <nb-layout-column class="h-100">
+  <nb-layout-column class="h-100 d-flex flex-column">
 
-    <nb-card size="large">
+    <nb-card size="large" class="flex-grow-1">
       <nb-tabset fullWidth class="h-100">
         <nb-tab tabIcon="inbox-outline" class="h-100">
             <app-reply-list [replies]="replyMessage" class="h-100"></app-reply-list>
