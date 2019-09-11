@@ -1,8 +1,8 @@
 <div class="h-100 overflow-auto" #scrollContainer>
-    <nb-list infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+    <nb-list infiniteScroll [infiniteScrollDistance]="0.5" [infiniteScrollThrottle]="50"
         [infiniteScrollContainer]="scrollContainer" (scrolled)="onScroll()">
-        <!-- replies -->
-        <nb-list-item *ngFor="let reply of replies.docs" class="row mx-0 ">
+        <!-- replyList -->
+        <nb-list-item *ngFor="let reply of replyList.docs" class="row mx-0 ">
             <div class="col-1 my-auto px-0">
                 <nb-user [name]="reply.telecom"
                     [picture]="reply.telecom ==='CHT'? 'assets/cht.png' : reply.telecom ==='FET' ? 'assets/fet.jpeg': null"
@@ -21,6 +21,12 @@
                 <span class="text-muted d-none d-sm-block">{{ reply.dateTime | amTimeAgo }}</span>
             </div>
         </nb-list-item>
+        <nb-list-item *ngIf="isLoading">
+            <app-list-loading></app-list-loading>
+        </nb-list-item>
+        <nb-list-item *ngIf="!replyList.nextPage">
+            <app-list-end [totalDocs]="replyList.totalDocs"></app-list-end>
+        </nb-list-item>
     </nb-list>
-    <span class="page p-1">{{ replies.page * replies.limit }} / {{ replies.totalDocs }} </span>
+
 </div>

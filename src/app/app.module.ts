@@ -41,6 +41,8 @@ import { StatusChartComponent } from './status-chart/status-chart.component';
 import { MessageListComponent } from './message-list/message-list.component';
 import { FilterComponent } from './filter/filter.component';
 import { ReplyListComponent } from './reply-list/reply-list.component';
+import { ListEndComponent } from './list-end/list-end.component';
+import { ListLoadingComponent } from './list-loading/list-loading.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { ReplyListComponent } from './reply-list/reply-list.component';
     StatusChartComponent,
     MessageListComponent,
     FilterComponent,
-    ReplyListComponent
+    ReplyListComponent,
+    ListEndComponent,
+    ListLoadingComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NbSidebarService, NbWindowService, NbThemeService } from '@nebular/theme';
 
-import { ApiService } from './api.service';
+import { ApiService, ReplyList } from './api.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,9 @@ export class AppComponent implements OnInit {
   title = 'sms-web';
   today = new Date();
   historyMessage = [];
-  replies: any;
+  // reply
+  replyList: ReplyList;
+  replyIsLoading = false;
 
   constructor(
     private sidebarService: NbSidebarService,
@@ -50,14 +52,17 @@ export class AppComponent implements OnInit {
     );
   }
 
-  replyScrolled(event) {
-    this.getReply(event);
+  getReply(page: number) {
+    this.replyIsLoading = true;
+    this.apiService.getReply(page)
+      .then((data: ReplyList) =>
+        this.replyList = this.updateList(this.replyList, data))
+      .catch(err => console.error(err))
+      .finally(() => this.replyIsLoading = false);
   }
 
-  private getReply(page) {
-    this.apiService.getReply(page).subscribe(
-      data => this.replies = data,
-      err => console.error(err)
-    );
+  private updateList(oldList, newList) {
+    if (oldList) { newList.docs = oldList.docs.concat(newList.docs); }
+    return newList;
   }
 }

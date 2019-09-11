@@ -1,23 +1,20 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-reply-list',
   templateUrl: './reply-list.component.html',
   styleUrls: ['./reply-list.component.scss']
 })
-export class ReplyListComponent implements OnInit {
+export class ReplyListComponent  {
 
-  @Input() replies: any;
-  @Output() scrolled: EventEmitter<any> = new EventEmitter();
+  @Input() replyList: any;
+  @Input() isLoading = false;
+  @Output() nextPage: EventEmitter<any> = new EventEmitter();
 
   constructor() {
   }
 
-  ngOnInit() {
-    console.log(this.replies)
-  }
-
   onScroll() {
-    this.scrolled.emit(this.replies.nextPage);
+    if (this.replyList.nextPage) { this.nextPage.emit(this.replyList.nextPage); }
   }
 }
