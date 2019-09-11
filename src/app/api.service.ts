@@ -8,11 +8,19 @@ const apiUrl = environment.apiUrl + '/web/';
 @Injectable({
   providedIn: 'root'
 })
-export class HistoryService {
+export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<any[]> {
+  getReply(page): Observable<any[]> {
+    const body = {
+      page,
+      limit: 20
+    };
+    return this.http.post<any[]>(apiUrl + 'reply', body);
+  }
+
+  getHistory(): Observable<any[]> {
     return this.http.get<any[]>(apiUrl + 'history');
   }
 

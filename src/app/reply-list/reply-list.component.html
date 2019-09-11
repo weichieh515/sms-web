@@ -2,7 +2,7 @@
     <nb-list infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
         [infiniteScrollContainer]="scrollContainer" (scrolled)="onScroll()">
         <!-- replies -->
-        <nb-list-item *ngFor="let reply of replies" class="row mx-0 ">
+        <nb-list-item *ngFor="let reply of replies.docs" class="row mx-0 ">
             <div class="col-1 my-auto px-0">
                 <nb-user [name]="reply.telecom"
                     [picture]="reply.telecom ==='CHT'? 'assets/cht.png' : reply.telecom ==='FET' ? 'assets/fet.jpeg': null"
@@ -22,4 +22,5 @@
             </div>
         </nb-list-item>
     </nb-list>
+    <span class="page p-1">{{ replies.page * replies.limit }} / {{ replies.totalDocs }} </span>
 </div>

@@ -1,3 +1,11 @@
 nb-list-item:first-child {
   border-top-width: 0
 }
+
+.page {
+  position: sticky;
+  bottom: 0;
+  float: right;
+  background-color: hsla(0,0%,6.7%,.8);
+  color: white
+}

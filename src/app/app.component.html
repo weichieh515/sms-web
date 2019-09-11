@@ -17,21 +17,22 @@
   </nb-layout-header>
 
   <nb-sidebar left tag="filter" state="collapsed" responsive="true" state="expanded" compactedBreakpoints=""
-    collapsedBreakpoints="['xs', 'is', 'sm', 'md']">
+    collapsedBreakpoints="['xs', 'is', 'sm', 'md', 'lg']">
     <app-filter></app-filter>
   </nb-sidebar>
 
 
-  <nb-layout-column class="h-100 d-flex flex-column">
+  <nb-layout-column class="d-flex flex-column">
 
     <nb-card size="large" class="flex-grow-1">
       <nb-tabset fullWidth class="h-100">
         <nb-tab tabIcon="inbox-outline" class="h-100">
-            <app-reply-list [replies]="replyMessage" class="h-100"></app-reply-list>
+          <app-reply-list [replies]="replies" class="h-100" (scrolled)="replyScrolled($event)"></app-reply-list>
         </nb-tab>
         <nb-tab tabIcon="paper-plane-outline" class="h-100">
           <app-message-list [messages]="historyMessage" class="h-100"></app-message-list>
         </nb-tab>
+
       </nb-tabset>
     </nb-card>
 

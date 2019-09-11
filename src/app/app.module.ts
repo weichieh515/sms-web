@@ -32,7 +32,8 @@ import {
   NbButtonModule,
   NbBadgeModule,
   NbTooltipModule,
-  NbTabsetModule
+  NbTabsetModule,
+  NbPopoverModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { StatusComponent } from './status/status.component';
@@ -59,7 +60,7 @@ import { ReplyListComponent } from './reply-list/reply-list.component';
     MomentModule,
     InfiniteScrollModule,
     // nb
-    NbThemeModule.forRoot({ name: 'dark' }),
+    NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbEvaIconsModule,
     NbCheckboxModule,
@@ -79,6 +80,7 @@ import { ReplyListComponent } from './reply-list/reply-list.component';
     NbBadgeModule,
     NbTooltipModule,
     NbTabsetModule,
+    NbPopoverModule,
     // chart
     BarChartModule,
     PieChartModule
