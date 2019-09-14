@@ -22,10 +22,11 @@
                 <span class="text-muted d-none d-sm-block">{{ reply.dateTime | amTimeAgo }}</span>
             </div>
         </nb-list-item>
-
+        <!-- list-loading  -->
         <nb-list-item *ngIf="isLoading">
             <app-list-loading></app-list-loading>
         </nb-list-item>
+        <!-- list-end -->
         <nb-list-item *ngIf="!data.hasNextPage">
             <app-list-end [totalDocs]="data.totalDocs"></app-list-end>
         </nb-list-item>

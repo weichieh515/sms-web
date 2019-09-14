@@ -1,7 +1,7 @@
 <div class="h-100 overflow-auto" #scrollContainer>
 
-  <nb-accordion multi *ngIf="data" infiniteScroll [infiniteScrollDistance]="0.1"
-    [infiniteScrollThrottle]="50" [infiniteScrollContainer]="scrollContainer" (scrolled)="onScroll()">
+  <nb-accordion multi *ngIf="data" infiniteScroll [infiniteScrollDistance]="0.1" [infiniteScrollThrottle]="50"
+    [infiniteScrollContainer]="scrollContainer" (scrolled)="onScroll()">
     <nb-accordion-item *ngFor="let msg of data.docs" class="row mx-0 ">
       <nb-accordion-item-header class="pl-0">
         <!-- chart  -->
@@ -55,6 +55,18 @@
           </nb-list-item>
         </nb-list>
       </nb-accordion-item-body>
+    </nb-accordion-item>
+    <!-- list-loading  -->
+    <nb-accordion-item *ngIf="isLoading" disabled="true">
+      <nb-accordion-item-header>
+        <app-list-loading class="m-auto"></app-list-loading>
+      </nb-accordion-item-header>
+    </nb-accordion-item>
+    <!-- list-end -->
+    <nb-accordion-item *ngIf="!data.hasNextPage" disabled="true">
+      <nb-accordion-item-header>
+        <app-list-end [totalDocs]="data.totalDocs" class="m-auto"></app-list-end>
+      </nb-accordion-item-header>
     </nb-accordion-item>
   </nb-accordion>
 </div>
