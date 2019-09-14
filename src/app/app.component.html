@@ -25,13 +25,12 @@
 
     <nb-card size="large" class="flex-grow-1">
       <nb-tabset fullWidth class="h-100">
-        <nb-tab tabIcon="inbox-outline" class="h-100">
-          <app-reply-list class="h-100" *ngIf="replyList" [replyList]="replyList" [isLoading]="replyIsLoading" (nextPage)="getReply($event)"></app-reply-list>
-        </nb-tab>
         <nb-tab tabIcon="paper-plane-outline" class="h-100">
-          <app-message-list [messages]="historyMessage" class="h-100"></app-message-list>
+          <app-message-list class="h-100"></app-message-list>
         </nb-tab>
-
+        <nb-tab tabIcon="inbox-outline" class="h-100">
+          <app-reply-list class="h-100"></app-reply-list>
+        </nb-tab>
       </nb-tabset>
     </nb-card>
 

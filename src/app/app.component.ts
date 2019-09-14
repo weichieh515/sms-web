@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NbSidebarService, NbWindowService, NbThemeService } from '@nebular/theme';
 
-import { ApiService, ReplyList } from './api.service';
+import { ApiService, ReplyList, HistoryList, History } from './api.service';
 
 @Component({
   selector: 'app-root',
@@ -9,26 +9,16 @@ import { ApiService, ReplyList } from './api.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'sms-web';
+
   today = new Date();
-  historyMessage = [];
-  // reply
-  replyList: ReplyList;
-  replyIsLoading = false;
 
   constructor(
     private sidebarService: NbSidebarService,
     private windowService: NbWindowService,
-    private themeService: NbThemeService,
-    private apiService: ApiService
+    private themeService: NbThemeService
   ) { }
 
   ngOnInit(): void {
-    this.apiService.getHistory().subscribe(
-      data => this.historyMessage = data,
-      err => console.error(err)
-    );
-    this.getReply(1);
   }
 
   toggleDarkMode() {
@@ -52,17 +42,4 @@ export class AppComponent implements OnInit {
     );
   }
 
-  getReply(page: number) {
-    this.replyIsLoading = true;
-    this.apiService.getReply(page)
-      .then((data: ReplyList) =>
-        this.replyList = this.updateList(this.replyList, data))
-      .catch(err => console.error(err))
-      .finally(() => this.replyIsLoading = false);
-  }
-
-  private updateList(oldList, newList) {
-    if (oldList) { newList.docs = oldList.docs.concat(newList.docs); }
-    return newList;
-  }
 }

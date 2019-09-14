@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 
 const apiUrl = environment.apiUrl + '/web/';
@@ -12,7 +11,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getReply(page): Promise<ReplyList> {
+  getReply(page: number): Promise<ReplyList> {
     const body = {
       page,
       limit: 20
@@ -20,8 +19,12 @@ export class ApiService {
     return this.http.post<any>(apiUrl + 'reply', body).toPromise();
   }
 
-  getHistory(): Observable<any[]> {
-    return this.http.get<any[]>(apiUrl + 'history');
+  getHistory(page: number): Promise<HistoryList> {
+    const body = {
+      page,
+      limit: 10
+    };
+    return this.http.post<any>(apiUrl + 'history', body).toPromise();
   }
 
 }
@@ -36,6 +39,7 @@ export interface List {
   prevPage: number;
   totalDocs: number;
   totalPages: number;
+  doc: any;
 }
 export interface Reply {
   _id: string;
@@ -44,7 +48,29 @@ export interface Reply {
   content: string;
   dateTime: Date;
 }
-
+export interface Destination {
+  _id: string;
+  messageId: string;
+  number: string;
+  responseText: string;
+  status: string;
+  updateDateTime: Date;
+}
+export interface History {
+  _id: string;
+  user: string;
+  content: string;
+  dateTime: Date;
+  destination: Destination[];
+  option: {
+    telecom: string;
+    command: boolean;
+  };
+}
 export interface ReplyList extends List {
   docs: Reply[];
 }
+export interface HistoryList extends List {
+  docs: History[];
+}
+

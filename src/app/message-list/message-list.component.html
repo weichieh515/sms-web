@@ -1,5 +1,8 @@
-<nb-accordion multi class="h-100">
-    <nb-accordion-item *ngFor="let msg of messages" class="row mx-0 ">
+<div class="h-100 overflow-auto" #scrollContainer>
+
+  <nb-accordion multi *ngIf="data" infiniteScroll [infiniteScrollDistance]="0.1"
+    [infiniteScrollThrottle]="50" [infiniteScrollContainer]="scrollContainer" (scrolled)="onScroll()">
+    <nb-accordion-item *ngFor="let msg of data.docs" class="row mx-0 ">
       <nb-accordion-item-header class="pl-0">
         <!-- chart  -->
         <div class="col-2 col-md-1 px-0">
@@ -54,3 +57,4 @@
       </nb-accordion-item-body>
     </nb-accordion-item>
   </nb-accordion>
+</div>
