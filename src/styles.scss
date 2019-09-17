@@ -3,12 +3,20 @@
 @import '~@nebular/theme/styles/themes/default';
 @import '~@nebular/theme/styles/themes/dark';
 
-$nb-themes: nb-register-theme((
-  text-basic-color: color-basic-800, // some styles we changed
-  text-disabled-color: color-basic-600,
-), default, default);
+$nb-themes: nb-register-theme((text-basic-color: color-basic-800, // some styles we changed
+    text-disabled-color: color-basic-600,
+  ), default, default);
 
-$nb-themes: nb-register-theme((
-  text-basic-color: color-basic-800, // some styles we changed
-  text-disabled-color: color-basic-600,
-), dark, dark);
+$nb-themes: nb-register-theme((text-basic-color: color-basic-800, // some styles we changed
+    text-disabled-color: color-basic-600,
+  ), dark, dark);
+
+@media (max-width: 575.98px) {
+  nb-sidebar.expanded {
+    width: 100% !important;
+  }
+
+  .main-container {
+    width: 100% !important;
+  }
+}

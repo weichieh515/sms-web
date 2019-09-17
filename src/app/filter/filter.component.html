@@ -1,20 +1,24 @@
 <input nbInput placeholder="目的門號" fullWidth shape="round" type="text" class="mb-3">
-    <input nbInput placeholder="傳送日期" [nbDatepicker]="rangepicker" shape="round" class="mb-3">
-    <nb-rangepicker #rangepicker [max]="today"></nb-rangepicker>
-    <textarea nbInput fullWidth placeholder="內文" class="mb-3"></textarea>
+<textarea nbInput fullWidth placeholder="內文" class="mb-3"></textarea>
 
-    <div class="my-auto">
-      <span class="subheader">發送用途</span>
-      <hr>
-      <nb-checkbox status="primary">指令</nb-checkbox>
-      <nb-checkbox status="success">通知</nb-checkbox>
-      <nb-checkbox status="warning">其他</nb-checkbox>
-      <br>
-      <span class="subheader">狀態</span>
-      <hr>
-      <nb-checkbox status="info">處理中</nb-checkbox>
-      <nb-checkbox status="primary">傳送中</nb-checkbox>
-      <nb-checkbox status="success">已成功</nb-checkbox>
-      <nb-checkbox status="danger">已失敗</nb-checkbox>
-      <nb-checkbox status="warning">電信拒絕</nb-checkbox>
-    </div>
+<input nbInput placeholder="傳送日期" fullWidth shape="round" type="text" class="mb-3" 
+[ngModel]="(range.start | amDateFormat: 'YYYY.MM.DD') + (range.end ? ' - ': '') +  (range.end | amDateFormat: 'YYYY.MM.DD')" [nbPopover]="templateRef">
+<ng-template #templateRef>
+  <nb-calendar-range [(range)]="range" [showHeader]="false"></nb-calendar-range>
+</ng-template>
+
+<div class="my-auto">
+  <span class="subheader">發送用途</span>
+  <hr>
+  <nb-checkbox status="primary">指令</nb-checkbox>
+  <nb-checkbox status="success">通知</nb-checkbox>
+  <nb-checkbox status="warning">其他</nb-checkbox>
+  <br>
+  <span class="subheader">狀態</span>
+  <hr>
+  <nb-checkbox status="info">處理中</nb-checkbox>
+  <nb-checkbox status="primary">傳送中</nb-checkbox>
+  <nb-checkbox status="success">已成功</nb-checkbox>
+  <nb-checkbox status="danger">已失敗</nb-checkbox>
+  <nb-checkbox status="warning">電信拒絕</nb-checkbox>
+</div>

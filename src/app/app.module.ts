@@ -1,6 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { registerLocaleData } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import local from '@angular/common/locales/zh-Hant';
+registerLocaleData(local);
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,7 +37,9 @@ import {
   NbBadgeModule,
   NbTooltipModule,
   NbTabsetModule,
-  NbPopoverModule
+  NbPopoverModule,
+  NbCalendarModule,
+  NbCalendarRangeModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { StatusComponent } from './status/status.component';
@@ -54,13 +60,14 @@ import { ListLoadingComponent } from './list-loading/list-loading.component';
     FilterComponent,
     ReplyListComponent,
     ListEndComponent,
-    ListLoadingComponent
+    ListLoadingComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
     MomentModule,
     InfiniteScrollModule,
     // nb
@@ -85,11 +92,15 @@ import { ListLoadingComponent } from './list-loading/list-loading.component';
     NbTooltipModule,
     NbTabsetModule,
     NbPopoverModule,
+    NbCalendarModule,
+    NbCalendarRangeModule,
     // chart
     BarChartModule,
     PieChartModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'zh-Hant' },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
