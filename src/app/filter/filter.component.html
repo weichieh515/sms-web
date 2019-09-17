@@ -1,9 +1,13 @@
-<input nbInput placeholder="目的門號" fullWidth shape="round" type="text" class="mb-3">
+<ng-select [items]="numbers" [multiple]="true" [closeOnSelect]="true" [searchable]="true" placeholder="目的門號"
+  [(ngModel)]="destination"  class="mb-3" (focus)="getDestination()" >
+</ng-select>
+
 <textarea nbInput fullWidth placeholder="內文" class="mb-3"></textarea>
 
-<input nbInput placeholder="傳送日期" fullWidth shape="round" type="text" class="mb-3" 
-[ngModel]="(range.start | amDateFormat: 'YYYY.MM.DD') + (range.end ? ' - ': '') +  (range.end | amDateFormat: 'YYYY.MM.DD')" [nbPopover]="templateRef">
-<ng-template #templateRef>
+<input nbInput placeholder="傳送日期" fullWidth shape="round" type="text" class="mb-3"
+  [ngModel]="(range.start | amDateFormat: 'YYYY.MM.DD') + (range.end ? ' - ': '') +  (range.end | amDateFormat: 'YYYY.MM.DD')"
+  [nbPopover]="dateRange">
+<ng-template #dateRange>
   <nb-calendar-range [(range)]="range" [showHeader]="false"></nb-calendar-range>
 </ng-template>
 

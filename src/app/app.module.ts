@@ -3,6 +3,7 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 import local from '@angular/common/locales/zh-Hant';
 registerLocaleData(local);
 
@@ -70,6 +71,7 @@ import { ListLoadingComponent } from './list-loading/list-loading.component';
     FormsModule,
     MomentModule,
     InfiniteScrollModule,
+    NgSelectModule,
     // nb
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,

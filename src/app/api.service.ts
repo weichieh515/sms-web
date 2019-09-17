@@ -27,6 +27,10 @@ export class ApiService {
     return this.http.post<any>(apiUrl + 'history', body).toPromise();
   }
 
+  getDestination(): Promise<string[]> {
+    return this.http.get<any>(apiUrl + 'destination').toPromise();
+  }
+
 }
 
 export interface List {
