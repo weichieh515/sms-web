@@ -12,7 +12,10 @@ ng-select ::ng-deep .ng-select-container{
     transition-timing-function: inherit !important;
   }
   
-  ng-select ::ng-deep .ng-value {
-    color: black;
+  ng-select ::ng-deep input {
+    color: inherit !important;
   }
   
+  ng-select ::ng-deep .ng-value {
+    color: black !important;
+  }

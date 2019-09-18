@@ -41,6 +41,7 @@ import {
   NbPopoverModule,
   NbCalendarModule,
   NbCalendarRangeModule,
+  NbSelectModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { StatusComponent } from './status/status.component';
@@ -50,6 +51,8 @@ import { FilterComponent } from './filter/filter.component';
 import { ReplyListComponent } from './reply-list/reply-list.component';
 import { ListEndComponent } from './list-end/list-end.component';
 import { ListLoadingComponent } from './list-loading/list-loading.component';
+import { MessageSendComponent } from './message-send/message-send.component';
+import { NumberSelectComponent } from './number-select/number-select.component';
 
 
 @NgModule({
@@ -62,6 +65,8 @@ import { ListLoadingComponent } from './list-loading/list-loading.component';
     ReplyListComponent,
     ListEndComponent,
     ListLoadingComponent,
+    MessageSendComponent,
+    NumberSelectComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,6 +101,7 @@ import { ListLoadingComponent } from './list-loading/list-loading.component';
     NbPopoverModule,
     NbCalendarModule,
     NbCalendarRangeModule,
+    NbSelectModule,
     // chart
     BarChartModule,
     PieChartModule
@@ -103,6 +109,7 @@ import { ListLoadingComponent } from './list-loading/list-loading.component';
   providers: [
     { provide: LOCALE_ID, useValue: 'zh-Hant' },
   ],
+  entryComponents: [MessageSendComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

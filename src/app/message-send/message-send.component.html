@@ -1,0 +1,14 @@
+<app-number-select></app-number-select>
+<div class="row mx-0 mb-3">
+
+
+  <nb-select size="small" [(selected)]="telecom"  >
+    <nb-option value="FET">FET 遠傳</nb-option>
+    <nb-option value="CHT">CHT 中華</nb-option>
+  </nb-select>
+
+  <nb-checkbox status="primary" class="ml-auto pl-sm-2" >指令</nb-checkbox>
+</div>
+
+<textarea nbInput fullWidth placeholder="內文" fieldSize="large" class="mb-3"></textarea>
+<button nbButton fullWidth hero status="success" shape="round" class="mx-auto">傳送</button>

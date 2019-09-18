@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NbSidebarService, NbWindowService, NbThemeService } from '@nebular/theme';
+import { MessageSendComponent } from './message-send/message-send.component';
 
 @Component({
   selector: 'app-root',
@@ -28,16 +29,8 @@ export class AppComponent implements OnInit {
     this.sidebarService.toggle(false, 'filter');
   }
 
-  openWindow(contentTemplate) {
-    this.windowService.open(
-      contentTemplate,
-      {
-        title: 'Window content from template',
-        context: {
-          text: 'some text to pass into template',
-        },
-      },
-    );
+  openWindow() {
+    this.windowService.open(MessageSendComponent, {title: '新增訊息'});
   }
 
 }
