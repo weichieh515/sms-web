@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-filter',
@@ -13,25 +12,9 @@ export class FilterComponent implements OnInit {
     end: new Date()
   };
 
-  numbers: string[];
-  numbersIsLoading: boolean;
-  private numbersTimestamp: number;
-
-  constructor(private apiService: ApiService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.getDestination();
   }
 
-  getDestination() {
-    if (new Date().getTime() - this.numbersTimestamp < 300000) { return; }
-    this.numbersIsLoading = true;
-    this.apiService.getDestination()
-      .then(res => {
-        this.numbers = res;
-        this.numbersTimestamp = new Date().getTime();
-      })
-      .catch(err => console.error(err))
-      .finally(() => this.numbersIsLoading = false);
-  }
 }

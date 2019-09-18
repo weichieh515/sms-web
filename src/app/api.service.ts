@@ -27,8 +27,11 @@ export class ApiService {
     return this.http.post<any>(apiUrl + 'history', body).toPromise();
   }
 
-  getDestination(): Promise<string[]> {
-    return this.http.get<any>(apiUrl + 'destination').toPromise();
+  getNumber(type: string): Promise<string[]> {
+    const body = {
+      type
+    };
+    return this.http.post<any>(apiUrl + 'number', body).toPromise();
   }
 
 }
@@ -77,4 +80,3 @@ export interface ReplyList extends List {
 export interface HistoryList extends List {
   docs: History[];
 }
-
