@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -9,6 +9,8 @@ import { ApiService } from '../api.service';
 export class NumberSelectComponent implements OnInit {
 
   @Input() type = 'message';
+  @Output() selected = new EventEmitter<any>();
+
   numbers: string[];
   isLoading: boolean;
   private timeStamp: number;
@@ -29,5 +31,9 @@ export class NumberSelectComponent implements OnInit {
       })
       .catch(err => console.error(err))
       .finally(() => this.isLoading = false);
+  }
+
+  onChange(data: string[]): void {
+    this.selected.emit(data);
   }
 }

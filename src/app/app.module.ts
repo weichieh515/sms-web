@@ -42,6 +42,7 @@ import {
   NbCalendarModule,
   NbCalendarRangeModule,
   NbSelectModule,
+  NbSpinnerModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { StatusComponent } from './status/status.component';
@@ -102,6 +103,7 @@ import { NumberSelectComponent } from './number-select/number-select.component';
     NbCalendarModule,
     NbCalendarRangeModule,
     NbSelectModule,
+    NbSpinnerModule,
     // chart
     BarChartModule,
     PieChartModule

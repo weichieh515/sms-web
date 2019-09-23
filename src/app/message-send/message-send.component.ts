@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-message-send',
@@ -9,10 +10,22 @@ export class MessageSendComponent implements OnInit {
 
   telecom = 'FET';
   command = false;
-  resend = false;
-  constructor() { }
+  destination: string[];
+  content: string;
+
+  isLoading: boolean;
+
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+  }
+
+  send() {
+    this.isLoading = true;
+    this.apiService.sendMessage(this.destination, this.content, this.telecom, this.command)
+      .then(res => console.log(res))
+      .catch(err => console.error(err))
+      .finally(() => this.isLoading = false);
   }
 
 }

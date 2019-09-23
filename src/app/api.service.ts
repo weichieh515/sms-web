@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 
-const apiUrl = environment.apiUrl + '/web/';
+const apiUrl = environment.apiUrl + '/';
+const webUrl = apiUrl + '/web/';
+
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoid2ViIiwiaWF0IjoxNTY4Nzk5OTg4fQ.1GW9Fd5CQ8PRijzrd6Hmoj9srROrrFWEa3PRNd0llx8';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +14,25 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  sendMessage(destination: string[], content: string, telecom = 'FET', command = false): Promise<any> {
+    const body = {
+      message: content,
+      telecom,
+      destination,
+      command,
+    };
+    const headers = new HttpHeaders({
+      Authorization: 'bearer ' + token
+    });
+    return this.http.post<any>(apiUrl + 'v2/submit', body, { headers }).toPromise();
+  }
+
   getReply(page: number): Promise<ReplyList> {
     const body = {
       page,
       limit: 20
     };
-    return this.http.post<any>(apiUrl + 'reply', body).toPromise();
+    return this.http.post<any>(webUrl + 'reply', body).toPromise();
   }
 
   getHistory(page: number): Promise<HistoryList> {
@@ -24,14 +40,14 @@ export class ApiService {
       page,
       limit: 10
     };
-    return this.http.post<any>(apiUrl + 'history', body).toPromise();
+    return this.http.post<any>(webUrl + 'history', body).toPromise();
   }
 
   getNumber(type: string): Promise<string[]> {
     const body = {
       type
     };
-    return this.http.post<any>(apiUrl + 'number', body).toPromise();
+    return this.http.post<any>(webUrl + 'number', body).toPromise();
   }
 
 }
