@@ -3,6 +3,7 @@ export class ListBase {
 
     data: List;
     isLoading: boolean;
+    protected topId: string;
 
     constructor(protected apiService: ApiService) { }
 
@@ -12,7 +13,7 @@ export class ListBase {
 
     getData(page: number) {
         this.isLoading = true;
-        this.apiGetData(page)
+        this.apiGetData(page, this.topId)
             .then((res: List) =>
                 this.data = this.updateList(this.data, res)
             )
@@ -24,12 +25,13 @@ export class ListBase {
             );
     }
 
-    protected apiGetData(page: number): Promise<List> {
-        return this.apiService.getReply(page);
+    protected apiGetData(page: number, topId: string): Promise<List> {
+        return this.apiService.getReply(page, topId);
     }
 
     private updateList(oldList, newList) {
-        if (oldList) { newList.docs = oldList.docs.concat(newList.docs); }
+        oldList ? newList.docs = oldList.docs.concat(newList.docs) :
+            this.topId = newList.docs[0]._id;
         return newList;
     }
 

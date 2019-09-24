@@ -17,8 +17,8 @@ export class MessageListComponent extends ListBase {
     this.getData(1);
   }
 
-  protected apiGetData(page: number): Promise<HistoryList> {
-    return this.apiService.getHistory(page);
+  protected apiGetData(page: number, topId: string): Promise<HistoryList> {
+    return this.apiService.getHistory(page, topId);
   }
 
 }

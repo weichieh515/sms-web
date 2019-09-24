@@ -16,8 +16,8 @@ export class ReplyListComponent extends ListBase {
     this.getData(1);
   }
 
-  protected apiGetData(page: number): Promise<ReplyList> {
-    return this.apiService.getReply(page);
+  protected apiGetData(page: number, topId: string): Promise<ReplyList> {
+    return this.apiService.getReply(page, topId);
   }
 
 }
