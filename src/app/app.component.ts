@@ -10,6 +10,7 @@ import { MessageSendComponent } from './message-send/message-send.component';
 export class AppComponent implements OnInit {
 
   today = new Date();
+  filter: any = {};
 
   constructor(
     private sidebarService: NbSidebarService,
@@ -18,6 +19,14 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  }
+
+  updateFilter(e) {
+    this.filter = { ...e };
+    if (this.filter.range) {
+      this.filter.range.end = new Date(new Date(this.filter.range.end || this.filter.range.start).setHours(23, 59, 59));
+    }
+
   }
 
   toggleDarkMode() {
@@ -30,7 +39,7 @@ export class AppComponent implements OnInit {
   }
 
   openWindow() {
-    this.windowService.open(MessageSendComponent, {title: '新增訊息'});
+    this.windowService.open(MessageSendComponent, { title: '新增訊息' });
   }
 
 }

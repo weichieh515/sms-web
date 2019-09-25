@@ -1,20 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, DoCheck, KeyValueDiffers, KeyValueDiffer } from '@angular/core';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
 })
-export class FilterComponent implements OnInit {
+export class FilterComponent implements DoCheck {
 
-  range = {
-    start: new Date(),
-    end: new Date()
+  data = {
+    destination: [],
+    content: '',
+    range: {
+      start: new Date(),
+      end: new Date()
+    }
   };
 
-  constructor() { }
+  private dataChanged: Subject<any> = new Subject<any>();
 
-  ngOnInit() {
+  @Output() changed = new EventEmitter<any>();
+
+  private differ: KeyValueDiffer<string, any>;
+  constructor(private differs: KeyValueDiffers) {
+    this.differ = this.differs.find({}).create();
+    this.dataChanged.pipe(debounceTime(1000)).subscribe(data => this.changed.emit(data));
+  }
+
+  ngDoCheck() {
+    if (this.differ.diff(this.data)) { this.dataChanged.next(this.data); }
   }
 
 }

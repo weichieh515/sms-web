@@ -1,12 +1,12 @@
-<app-number-select></app-number-select>
+<app-number-select (selected)="data.destination = $event"></app-number-select>
 
-<textarea nbInput fullWidth placeholder="內文" class="mb-3"></textarea>
+<textarea nbInput fullWidth placeholder="內文" class="mb-3" [(ngModel)]="data.content"></textarea>
 
 <input nbInput placeholder="傳送日期" fullWidth shape="round" type="text" class="mb-3"
-  [ngModel]="(range.start | amDateFormat: 'YYYY.MM.DD') + (range.end ? ' - ': '') +  (range.end | amDateFormat: 'YYYY.MM.DD')"
+  [ngModel]="(data.range.start | amDateFormat: 'YYYY.MM.DD') + (data.range.end ? ' - ': '') +  (data.range.end | amDateFormat: 'YYYY.MM.DD')"
   [nbPopover]="dateRange">
 <ng-template #dateRange>
-  <nb-calendar-range [(range)]="range" [showHeader]="false"></nb-calendar-range>
+  <nb-calendar-range (rangeChange)="data.range = $event" [showHeader]="false"></nb-calendar-range>
 </ng-template>
 
 <div class="my-auto">

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ListBase } from '../list-base';
-import { ApiService, ReplyList, HistoryList } from '../api.service';
+import { ApiService, HistoryList } from '../api.service';
 
 @Component({
   selector: 'app-message-list',
@@ -17,8 +17,8 @@ export class MessageListComponent extends ListBase {
     this.getData(1);
   }
 
-  protected apiGetData(page: number, topId: string): Promise<HistoryList> {
-    return this.apiService.getHistory(page, topId);
+  protected apiGetData(filter: any, page: number, topId: string): Promise<HistoryList> {
+    return this.apiService.getHistory(filter, page, topId);
   }
 
 }

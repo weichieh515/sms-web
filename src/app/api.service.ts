@@ -27,20 +27,22 @@ export class ApiService {
     return this.http.post<any>(apiUrl + 'v2/submit', body, { headers }).toPromise();
   }
 
-  getReply(page: number, topId: string): Promise<ReplyList> {
+  getReply(filter: any, page: number, topId: string): Promise<ReplyList> {
     const body = {
       page,
       limit: 10,
-      topId
+      topId,
+      filter
     };
     return this.http.post<any>(webUrl + 'reply', body).toPromise();
   }
 
-  getHistory(page: number, topId: string): Promise<HistoryList> {
+  getHistory(filter: any, page: number, topId: string): Promise<HistoryList> {
     const body = {
       page,
       limit: 10,
-      topId
+      topId,
+      filter
     };
     return this.http.post<any>(webUrl + 'history', body).toPromise();
   }
