@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MomentModule } from 'ngx-moment';
-import { BarChartModule, PieChartModule } from '@swimlane/ngx-charts';
+import { BarChartModule, PieChartModule, NumberCardModule } from '@swimlane/ngx-charts';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import 'moment/locale/zh-tw';
@@ -43,6 +43,7 @@ import {
   NbCalendarRangeModule,
   NbSelectModule,
   NbSpinnerModule,
+  NbIconModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { StatusComponent } from './status/status.component';
@@ -104,9 +105,11 @@ import { NumberSelectComponent } from './number-select/number-select.component';
     NbCalendarRangeModule,
     NbSelectModule,
     NbSpinnerModule,
+    NbIconModule,
     // chart
     BarChartModule,
-    PieChartModule
+    PieChartModule,
+    NumberCardModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'zh-Hant' },

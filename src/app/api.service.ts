@@ -54,6 +54,12 @@ export class ApiService {
     return this.http.post<any>(webUrl + 'number', body).toPromise();
   }
 
+  getStatusCount(filter: any): Promise<any> {
+    const body = {
+      filter
+    };
+    return this.http.post<any>(webUrl + 'historyStatus', body).toPromise();
+  }
 }
 
 export interface List {

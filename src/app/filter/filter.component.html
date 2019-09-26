@@ -2,25 +2,17 @@
 
 <textarea nbInput fullWidth placeholder="內文" class="mb-3" [(ngModel)]="data.content"></textarea>
 
-<input nbInput placeholder="傳送日期" fullWidth shape="round" type="text" class="mb-3"
-  [ngModel]="(data.range.start | amDateFormat: 'YYYY.MM.DD') + (data.range.end ? ' - ': '') +  (data.range.end | amDateFormat: 'YYYY.MM.DD')"
-  [nbPopover]="dateRange">
+<div class="row mx-0">
+  <input nbInput placeholder="傳送日期" fullWidth type="text" class="mb-3"
+    [ngModel]="(data.dateTime.start | amDateFormat: 'YYYY.MM.DD') + (data.dateTime.end ? ' - ': '') +  (data.dateTime.end | amDateFormat: 'YYYY.MM.DD')"
+    [nbPopover]="dateRange">
+  <nb-icon icon="close-circle-outline" (click)="clearDateTime()"></nb-icon>
+</div>
+
 <ng-template #dateRange>
-  <nb-calendar-range (rangeChange)="data.range = $event" [showHeader]="false"></nb-calendar-range>
+  <nb-calendar-range (rangeChange)="data.dateTime = $event" [showHeader]="false"></nb-calendar-range>
 </ng-template>
 
-<div class="my-auto">
-  <span class="subheader">發送用途</span>
-  <hr>
-  <nb-checkbox status="primary">指令</nb-checkbox>
-  <nb-checkbox status="success">通知</nb-checkbox>
-  <nb-checkbox status="warning">其他</nb-checkbox>
-  <br>
-  <span class="subheader">狀態</span>
-  <hr>
-  <nb-checkbox status="info">處理中</nb-checkbox>
-  <nb-checkbox status="primary">傳送中</nb-checkbox>
-  <nb-checkbox status="success">已成功</nb-checkbox>
-  <nb-checkbox status="danger">已失敗</nb-checkbox>
-  <nb-checkbox status="warning">電信拒絕</nb-checkbox>
-</div>
+<ngx-charts-pie-chart [view]="[216,250]" [results]="status" doughnut="true" [customColors]="customColors" 
+  (select)="selectStatus($event.name)">
+</ngx-charts-pie-chart>
